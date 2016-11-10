@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Crystal Collector</title>
+</head>
+<body>
+	<h1>The Crystal Collector</h1>
+
+	<p>Number to Guess: <span id="numbertoGuess"></span></p>
+	<p>Your Score: <span id="counter"></span></p>
+
+	<div>
+		<button class = "number" id="0">Red</button>
+		<button class = "number" id="1">Green</button>
+		<button class = "number" id="2">Blue</button>
+		<button class = "number" id="3">Purple</button>
+	</div>
+<!-- JS script -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	var numbertoGuess;
+	var counter = 0;
+	var gemValArray = [];
+
+
+
+	//Assigns a random number between 19 - 120
+	numbertoGuess = Math.floor(Math.random() * 102) + 19;
+	//Print to the document
+	$("#numbertoGuess").html(numbertoGuess);
+	$("#counter").html(counter);
+;	console.log("Number to Guess: " + numbertoGuess);
+
+	//Assigns a random number between 1 - 12 for each gem
+	for (var i = 0; i < 4; i++){
+		gemValArray[i] = Math.floor(Math.random() * 12) + 1;
+		var button = "#" + i;
+		$(button).attr("data-crystalvalue", gemValArray[i]);
+	}
+
+
+	console.log("Gem Array Value: " + gemValArray);
+
+
+	$(".number").on("click", function(){
+		alert($(this).data("crystalvalue"));
+
+	});
+});
+
+
+
+
+</script>
+
+	
+</body>
+</html>
