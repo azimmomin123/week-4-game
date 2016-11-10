@@ -11,11 +11,15 @@
 	<p>Your Score: <span id="counter"></span></p>
 
 	<div>
-		<button class = "number" id="0">Red</button>
-		<button class = "number" id="1">Green</button>
-		<button class = "number" id="2">Blue</button>
-		<button class = "number" id="3">Purple</button>
+		<image class = "number" id="0" src ="assets/images/orange.png" type = "image"></image>
+		<image class = "number" id="1" src ="assets/images/green.png"></image>
+		<image class = "number" id="2" src ="assets/images/blue.png"></image>
+		<image class = "number" id="3" src ="assets/images/pink.png"></image>
 	</div>
+
+	<p>Wins: <span id="wins"></span></p>
+	<p>Losses: <span id="losses"></span></p>
+
 <!-- JS script -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script type="text/javascript">
@@ -25,30 +29,60 @@ $(document).ready(function() {
 	var counter = 0;
 	var gemValArray = [];
 
+	reset();
+	
+	function reset(){
+		//Assigns a random number between 19 - 120
+		numbertoGuess = Math.floor(Math.random() * 102) + 19;
+		//Print to the document
+		$("#numbertoGuess").html(numbertoGuess);
+		$("#counter").html(counter);
 
-
-	//Assigns a random number between 19 - 120
-	numbertoGuess = Math.floor(Math.random() * 102) + 19;
-	//Print to the document
-	$("#numbertoGuess").html(numbertoGuess);
-	$("#counter").html(counter);
-;	console.log("Number to Guess: " + numbertoGuess);
-
-	//Assigns a random number between 1 - 12 for each gem
-	for (var i = 0; i < 4; i++){
-		gemValArray[i] = Math.floor(Math.random() * 12) + 1;
-		var button = "#" + i;
-		$(button).attr("data-crystalvalue", gemValArray[i]);
+		//Assigns a random number between 1 - 12 for each gem
+		for (var i = 0; i < 4; i++){
+			gemValArray[i] = Math.floor(Math.random() * 12) + 1;
+			var button = "#" + i;
+			$(button).attr("data-crystalvalue", gemValArray[i]);
+		}
 	}
 
+	var wins = 0;
+	var losses = 0;
+	
+	
+	$("#wins").html(wins);
+	$("#losses").html(losses);
+	console.log("Number to Guess: " + numbertoGuess);
 
 	console.log("Gem Array Value: " + gemValArray);
 
 
 	$(".number").on("click", function(){
-		alert($(this).data("crystalvalue"));
+		var gem = $(this).data("crystalvalue");
+		counter = counter + gem;
+		$("#counter").html(counter);
+		console.log(counter);
+		//alert($(this).data("crystalvalue"));
 
+		if (numbertoGuess === counter){
+			wins = wins + 1;
+			counter	= 0;
+			$("#wins").html(wins);
+			reset();
+			console.log("You Win!");
+			
+		}else if(numbertoGuess < counter){
+			losses = losses + 1;
+			counter = 0;
+			$("#losses").html(losses);
+			reset();
+			console.log("You loose!");
+		}
 	});
+
+	
+
+
 });
 
 
