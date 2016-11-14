@@ -94,32 +94,36 @@ $(document).ready(function() {
 		}
 	}
 
+	//Initialize winse and losses
 	var wins = 0;
 	var losses = 0;
-	
+	//Print wins and losses to html
 	$("#wins").html(wins);
 	$("#losses").html(losses);
 	
-
+	//Giving the class "number" a onclick function
 	$(".number").on("click", function(){
+		//Assiging the crystalvalue to the gem that is being clicked
 		var gem = $(this).data("crystalvalue");
+		//The counter is increased by the gem that it is clicked on
 		counter = counter + gem;
 		$("#counter").html(counter);
 		//alert($(this).data("crystalvalue"));
 
+		//If statement to check if the player wins or goes above the guessed number
 		if (numbertoGuess === counter){
 			wins = wins + 1;
 			counter	= 0;
 			$("#wins").html(wins);
 			reset();
-			console.log("You Win!");
+			alert("You Win!");
 			
 		}else if(numbertoGuess < counter){
 			losses = losses + 1;
 			counter = 0;
 			$("#losses").html(losses);
 			reset();
-			console.log("You loose!");
+			alert("You loose!");
 		}
 	});
 });
