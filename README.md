@@ -1,7 +1,7 @@
 # week-4-game
 
 ### Overview
-In this app, I created a fun and interactive game for web browsers. The app dynamically update the HTML pages with the jQuery library. The player will have to guess the answer by clicking on the gems.
+In this app, I created a fun and interactive game for web browsers. The app dynamically updates the HTML pages with the jQuery library. The player will have to guess the answer by clicking on the gems that have a hidden amount that will add to the total score. When the total score matchs the random number the user wins.
 
 ### Here's how the app works:
 * There will be four crystals displayed as buttons on the page.
